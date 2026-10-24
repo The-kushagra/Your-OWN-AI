@@ -16,3 +16,31 @@ bin/
 # OS files
 .DS_Store
 Thumbs.db
+documents.txt
+db
+main.cpp.backup
+
+# Development backups
+*.backup
+*.bak
+*-backup
+
+# Local environment and credentials (keep safe examples trackable)
+.env
+.env.*
+!.env.example
+!.env.*.example
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Additional generated binaries and debug artifacts
+*.bin
+*.dll
+*.dylib
+*.so
+*.a
+*.class
+*.dSYM/

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <title>Ask Kushagra's AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--page:#080b12;--surface:#101722;--line:#293748;--ink:#edf2f8;--subtle:#a6b4c3;--mint:#a7f3d0;--mint-soft:rgba(167,243,208,.1);--red:#fda4af}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 75% 0,rgba(167,243,208,.08),transparent 42%),var(--page);color:var(--ink);font-family:'DM Sans',sans-serif}
+    a{color:var(--mint)}
+    .wrap{width:min(900px,calc(100% - 40px));margin:0 auto;padding:24px 0 54px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid var(--line);padding-bottom:18px}
+    .brand{font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:-.3px}.brand span{font-family:'Fira Code',monospace;color:var(--mint);margin-right:9px}
+    nav{display:flex;gap:18px;flex-wrap:wrap}nav a{font-size:13px;text-decoration:none;color:var(--subtle)}nav a:hover{color:var(--mint)}
+    main{max-width:760px;margin:76px auto 0}
+    .eyebrow{font:500 11px 'Fira Code',monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint)}
+    h1{font-size:clamp(36px,7vw,58px);letter-spacing:-2px;line-height:1.06;margin:13px 0 9px}
+    .headline{color:var(--mint);font-size:18px;font-weight:600;margin:0}
+    .intro{color:var(--subtle);line-height:1.7;margin:16px 0 28px;max-width:650px}
+    .chat{border:1px solid var(--line);background:rgba(16,23,34,.94);border-radius:15px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.2)}
+    .chat h2{font-size:16px;margin:0 0 13px}
+    .suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:19px}
+    .suggestion{border:1px solid #354457;background:#0b111a;color:#d7e1eb;padding:8px 11px;border-radius:999px;font:12px 'DM Sans',sans-serif;cursor:pointer}
+    .suggestion:hover{border-color:var(--mint);color:var(--mint)}
+    label{display:block;font-size:12px;color:var(--subtle);margin:0 0 7px}
+    textarea{display:block;width:100%;min-height:94px;resize:vertical;background:#0b111a;border:1px solid #354457;border-radius:9px;padding:12px 13px;color:var(--ink);font:14px/1.55 'DM Sans',sans-serif}
+    textarea::placeholder{color:#9aaaba;opacity:1}textarea:focus{outline:2px solid rgba(167,243,208,.55);outline-offset:1px}
+    .form-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+    .hint{font-size:11px;color:var(--subtle);line-height:1.5}
+    button.send{border:1px solid rgba(167,243,208,.42);background:var(--mint);color:#0a1712;padding:10px 16px;border-radius:7px;font:700 13px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+    button.send:hover{background:#c2f9df}button.send:disabled{opacity:.65;cursor:wait}
+    .status{min-height:20px;margin:15px 0 0;color:var(--subtle);font-size:13px;line-height:1.5}
+    .status.error{color:var(--red)}.status.loading{color:var(--mint)}
+    .answer-card{display:none;margin-top:18px;padding:17px;border:1px solid var(--line);border-radius:10px;background:#0b111a}
+    .answer-card.visible{display:block}.answer-label,.sources-title{font:600 10px 'Fira Code',monospace;letter-spacing:1px;text-transform:uppercase;color:var(--mint)}
+    .answer{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.75;margin:9px 0 0;color:var(--ink)}
+    .sources{border-top:1px solid var(--line);margin-top:17px;padding-top:14px}.source{margin-top:11px;color:var(--subtle);font-size:12px;line-height:1.65;overflow-wrap:anywhere}
+    .source strong{display:block;color:#d7e1eb;font-size:12px;margin-bottom:4px}.source a{color:var(--mint);overflow-wrap:anywhere}
+    footer{display:flex;justify-content:space-between;gap:14px;margin-top:24px;color:var(--subtle);font-size:12px}
+    footer a{text-decoration:none}
+    @media(max-width:600px){.wrap{width:min(100% - 28px,900px);padding-top:17px}header{align-items:flex-start;flex-direction:column}nav{gap:14px}main{margin-top:48px}.chat{padding:16px}.form-foot{align-items:flex-end}.hint{max-width:58%}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/"><span>&lt;/&gt;</span>Kushagra Bharbhunja</a>
+      <nav aria-label="Page navigation">
+        <a href="/">Portfolio</a>
+        <a href="/#ai-demo">Technical AI demo</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="eyebrow">Portfolio assistant</div>
+      <h1>Ask Kushagra's AI</h1>
+      <p class="headline">Java Developer | Spring Boot | AI Projects</p>
+      <p class="intro">Ask about Kushagra's listed projects and technologies. Answers use a small, reviewed set of public portfolio facts. When a detail is not verified, the assistant will say so.</p>
+
+      <section class="chat" aria-labelledby="chat-title">
+        <h2 id="chat-title">What would you like to know?</h2>
+        <div class="suggestions" aria-label="Suggested questions">
+          <button class="suggestion" type="button" data-question="Tell me about Kushagra.">Tell me about Kushagra.</button>
+          <button class="suggestion" type="button" data-question="Explain the UPI Without Internet project.">Explain the UPI Without Internet project.</button>
+          <button class="suggestion" type="button" data-question="What is NextHire AI?">What is NextHire AI?</button>
+          <button class="suggestion" type="button" data-question="What technologies does he use?">What technologies does he use?</button>
+        </div>
+
+        <form id="questionForm">
+          <label for="questionInput">Your question</label>
+          <textarea id="questionInput" maxlength="2000" placeholder="Ask about a project, listed technology, or portfolio detail…" required></textarea>
+          <div class="form-foot">
+            <span class="hint">Public, read-only assistant · answers are grounded in reviewed portfolio facts</span>
+            <button class="send" id="sendButton" type="submit">Ask AI <span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+        <section class="answer-card" id="answerCard" aria-label="AI answer">
+          <div class="answer-label">Answer</div>
+          <p class="answer" id="answerText"></p>
+          <div class="sources" id="sources" hidden>
+            <div class="sources-title">Portfolio sources</div>
+            <div id="sourceList"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer><span>Kushagra Bharbhunja</span><a href="/">Back to portfolio ↑</a></footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('questionForm');
+    const input = document.getElementById('questionInput');
+    const sendButton = document.getElementById('sendButton');
+    const statusBox = document.getElementById('status');
+    const answerCard = document.getElementById('answerCard');
+    const answerText = document.getElementById('answerText');
+    const sourcesBox = document.getElementById('sources');
+    const sourceList = document.getElementById('sourceList');
+
+    function appendSourceText(container, value) {
+      const text = String(value || '');
+      const githubUrl = /https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/g;
+      let last = 0;
+      for (const match of text.matchAll(githubUrl)) {
+        container.appendChild(document.createTextNode(text.slice(last, match.index)));
+        const link = document.createElement('a');
+        link.href = match[0];
+        link.textContent = match[0];
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        container.appendChild(link);
+        last = match.index + match[0].length;
+      }
+      container.appendChild(document.createTextNode(text.slice(last)));
+    }
+
+    function renderSources(sources) {
+      sourceList.replaceChildren();
+      sourcesBox.hidden = !Array.isArray(sources) || sources.length === 0;
+      if (sourcesBox.hidden) return;
+      for (const source of sources) {
+        const item = document.createElement('article');
+        item.className = 'source';
+        const title = document.createElement('strong');
+        title.textContent = source.title || 'Portfolio fact';
+        const excerpt = document.createElement('div');
+        appendSourceText(excerpt, source.text);
+        item.append(title, excerpt);
+        sourceList.appendChild(item);
+      }
+    }
+
+    async function ask(question) {
+      const cleanQuestion = question.trim();
+      if (!cleanQuestion) {
+        statusBox.className = 'status error';
+        statusBox.textContent = 'Enter a question to continue.';
+        input.focus();
+        return;
+      }
+      if (new TextEncoder().encode(cleanQuestion).length > 2000) {
+        statusBox.className = 'status error';
+        statusBox.textContent = 'Please keep the question under 2000 UTF-8 bytes.';
+        return;
+      }
+
+      sendButton.disabled = true;
+      sendButton.textContent = 'Thinking…';
+      statusBox.className = 'status loading';
+      statusBox.textContent = 'Checking verified portfolio facts…';
+      answerCard.classList.remove('visible');
+      answerText.textContent = '';
+      renderSources([]);
+
+      try {
+        const response = await fetch('/portfolio/ask', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({question: cleanQuestion, k: 3})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          if (response.status === 429) {
+            const retry = response.headers.get('Retry-After');
+            throw new Error(retry ? `Question limit reached. Please try again in about ${retry} seconds.` : 'Question limit reached. Please try again shortly.');
+          }
+          if (response.status === 503) throw new Error(data.error || 'The AI service is unavailable. Please try again later.');
+          if (response.status === 400 || response.status === 413) throw new Error(data.error || 'Please check your question and try again.');
+          throw new Error(data.error || 'The assistant could not answer right now. Please try again.');
+        }
+        answerText.textContent = data.answer || 'I do not have a verified answer for that question.';
+        renderSources(data.sources);
+        answerCard.classList.add('visible');
+        statusBox.className = 'status';
+        statusBox.textContent = data.model ? `Answered with ${data.model}.` : 'Answer ready.';
+      } catch (error) {
+        statusBox.className = 'status error';
+        statusBox.textContent = error instanceof TypeError
+          ? 'Could not reach the local server. Start the C++ server and open this page at http://localhost:8080/ask.'
+          : error.message;
+      } finally {
+        sendButton.disabled = false;
+        sendButton.textContent = 'Ask AI ↗';
+      }
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      ask(input.value);
+    });
+    document.querySelectorAll('[data-question]').forEach(button => {
+      button.addEventListener('click', () => {
+        input.value = button.dataset.question;
+        ask(input.value);
+      });
+    });
+  </script>
+</body>
+</html>

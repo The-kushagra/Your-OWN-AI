@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VectorDB — HNSW + RAG</title>
+<title>Kushagra Bharbhunja | AI Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:     #07070f;
@@ -19,14 +19,133 @@
   --muted:  #4a4a6a;
   --red:    #f38ba8;
   --green:  #a6e3a1;
+  --page: #080b12;
+  --surface: #101722;
+  --line: #202b39;
+  --ink: #edf2f8;
+  --subtle: #9aa9ba;
+  --mint: #a7f3d0;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Fira Code', 'Courier New', monospace;
-  height: 100vh; overflow: hidden;
-  display: flex; flex-direction: column;
+  background: var(--page); color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh; overflow-x: hidden;
 }
+
+/* ── PORTFOLIO ── */
+.portfolio { max-width: 1120px; margin: 0 auto; padding: 0 28px 76px; }
+.site-nav { height: 76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(154,169,186,.16); }
+.brand { color:var(--ink); font-weight:700; text-decoration:none; letter-spacing:-.4px; }
+.brand-mark { color:var(--mint); margin-right:9px; font-family:'Fira Code',monospace; }
+.nav-links { display:flex; align-items:center; gap:26px; }
+.nav-links a { color:var(--subtle); text-decoration:none; font-size:13px; transition:color .2s; }
+.nav-links a:hover { color:var(--ink); }
+.nav-links .nav-cta { border:1px solid var(--line); padding:9px 14px; border-radius:7px; color:var(--ink); }
+.nav-links .ask-cta { border-color:rgba(167,243,208,.42); background:rgba(167,243,208,.1); color:var(--mint); font-weight:700; }
+.hero { display:grid; grid-template-columns:1.2fr .8fr; gap:54px; align-items:center; padding:100px 0 90px; }
+.eyebrow { color:var(--mint); font:500 12px 'Fira Code',monospace; letter-spacing:1.4px; text-transform:uppercase; margin-bottom:20px; }
+.hero h2 { max-width:700px; font-size:clamp(42px,7vw,72px); line-height:1.03; letter-spacing:-3.6px; margin-bottom:23px; }
+.hero h2 span { color:var(--mint); }
+.hero-copy { max-width:590px; color:var(--subtle); font-size:17px; line-height:1.8; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.link-button { display:inline-flex; align-items:center; gap:9px; background:var(--mint); color:#0b1714; text-decoration:none; font-size:13px; font-weight:700; padding:12px 17px; border-radius:7px; }
+.link-button.secondary { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.link-button.contact { color:var(--mint); border-color:rgba(167,243,208,.4); }
+.hero-card { border:1px solid var(--line); background:radial-gradient(ellipse at top right,rgba(167,243,208,.1),transparent 55%),var(--surface); border-radius:14px; padding:25px; box-shadow:0 25px 80px rgba(0,0,0,.2); }
+.terminal-top { color:var(--subtle); font:12px 'Fira Code',monospace; border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:19px; }
+.terminal-top i { display:inline-block; width:7px;height:7px;border-radius:50%;background:#fda4af;margin-right:5px; }
+.terminal-top i:nth-child(2){background:#fcd34d}.terminal-top i:nth-child(3){background:var(--mint)}
+.code-line { font:13px/2 'Fira Code',monospace; color:#c5d1df; }
+.code-line .key { color:var(--mint); }.code-line .value { color:#c4b5fd; }
+.section { padding:30px 0 72px; scroll-margin-top:24px; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:25px; }
+.section-kicker { color:var(--mint); font:11px 'Fira Code',monospace; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:9px; }
+.section h3 { font-size:30px; letter-spacing:-1px; }
+.section-intro { color:var(--subtle); font-size:14px; max-width:440px; line-height:1.7; }
+.project-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.project-card { min-height:230px; border:1px solid var(--line); border-radius:11px; background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 70%),var(--surface); padding:23px; display:flex; flex-direction:column; transition:transform .2s,border-color .2s; }
+.project-card:hover { transform:translateY(-3px); border-color:#385044; }
+.project-top { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:24px; }
+.project-index { color:var(--mint); font:12px 'Fira Code',monospace; }
+.project-status { color:var(--subtle); border:1px solid var(--line); border-radius:20px; padding:5px 9px; font-size:10px; }
+.project-card h4 { font-size:20px; margin-bottom:8px; }
+.project-card p { color:var(--subtle); font-size:13px; line-height:1.7; max-width:480px; }
+.project-foot { margin-top:auto; padding-top:20px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.tags { color:#b9c8d8; font:10px 'Fira Code',monospace; }
+.project-foot a { color:var(--mint); font-size:12px; text-decoration:none; white-space:nowrap; }
+.project-card.in-progress { border-style:dashed; }
+.project-card.in-progress .project-status { color:#fcd34d; border-color:rgba(252,211,77,.25); }
+.skills-wrap { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.skill-group { border:1px solid var(--line); border-radius:10px; padding:22px; background:var(--surface); }
+.skill-group h4 { font-size:14px; margin-bottom:16px; }
+.skill-list { display:flex; flex-wrap:wrap; gap:8px; }
+.skill-list span { color:#c5d1df; background:#182331; border:1px solid #253244; border-radius:6px; padding:7px 10px; font:11px 'Fira Code',monospace; }
+.attribution { color:var(--subtle); font-size:12px; line-height:1.75; max-width:850px; border-left:2px solid #3b4a5c; padding:2px 0 2px 16px; }
+.attribution a { color:var(--mint); }
+.portfolio-footer { border-top:1px solid rgba(154,169,186,.16); padding-top:23px; display:flex; justify-content:space-between; gap:16px; color:var(--subtle); font-size:12px; }
+.portfolio-footer a { color:var(--mint); text-decoration:none; }
+
+/* Keep the original VectorDB application in its own full-height workspace. */
+.demo-shell {
+  --bg:#080b12; --card:#101722; --border:#293748; --accent:#a7f3d0;
+  --text:#edf2f8; --muted:#a6b4c3; --green:#a7f3d0;
+  height:100vh; min-height:650px; display:flex; flex-direction:column; overflow:hidden;
+  background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif;
+}
+.demo-shell header { font-family:'Fira Code','Courier New',monospace; }
+.demo-shell .layout { display:flex; flex:1; overflow:hidden; min-height:0; }
+.demo-shell header h1 { background-image:linear-gradient(90deg,var(--mint),#d8fff0); }
+.demo-shell #statsLabel,.demo-shell .badge { color:#b7c4d1; }
+.demo-shell .badge { border-color:#354457; }
+.demo-shell .badge.hl { color:var(--mint); border-color:rgba(167,243,208,.55); background:rgba(167,243,208,.1); }
+.demo-shell .badge.ok { color:var(--mint); border-color:rgba(167,243,208,.5); background:rgba(167,243,208,.09); }
+.demo-shell .left-panel,.demo-shell .right-panel { background:#101722; }
+.demo-shell .center-panel { background:#080b12; }
+.demo-shell .sec { color:#b5c3d1; }
+.demo-shell .tab { color:#a6b4c3; font-size:11px; font-weight:600; }
+.demo-shell .tab:hover { color:#edf2f8; background:rgba(255,255,255,.025); }
+.demo-shell .tab.on { color:var(--mint); border-bottom-color:var(--mint); }
+.demo-shell .tab-content { color:#edf2f8; }
+.demo-shell input[type=text],.demo-shell select,.demo-shell textarea {
+  background:#0b111a; border-color:#354457; color:#edf2f8;
+}
+.demo-shell input::placeholder,.demo-shell textarea::placeholder { color:#9aaaba; opacity:1; }
+.demo-shell input[type=text]:focus,.demo-shell select:focus,.demo-shell textarea:focus {
+  border-color:var(--mint); box-shadow:0 0 0 2px rgba(167,243,208,.12);
+}
+.demo-shell button:focus-visible,.demo-shell .tab:focus-visible,.demo-shell .algo-btn:focus-visible {
+  outline:2px solid var(--mint); outline-offset:2px;
+}
+.demo-shell select option { color:#edf2f8; background:#101722; }
+.demo-shell input[type=range] { accent-color:var(--mint); }
+.demo-shell button { font-family:'DM Sans',sans-serif; font-weight:700; }
+.demo-shell .btn-p { background:var(--mint); color:#0a1712; box-shadow:0 5px 18px rgba(167,243,208,.15); }
+.demo-shell .btn-p:hover { background:#c2f9df; box-shadow:0 7px 24px rgba(167,243,208,.24); }
+.demo-shell .btn-s { background:#1b2735; color:#e6edf5; border:1px solid #354457; }
+.demo-shell .btn-s:hover { background:#263648; }
+.demo-shell .btn-g { background:rgba(167,243,208,.1); color:var(--mint); border:1px solid rgba(167,243,208,.42); }
+.demo-shell .btn-g:hover { background:rgba(167,243,208,.18); }
+.demo-shell .algo-btn { color:#a6b4c3; border-color:#354457; background:#0b111a; }
+.demo-shell .algo-btn.on { color:var(--mint); border-color:var(--mint); background:rgba(167,243,208,.1); }
+.demo-shell .rcard,.demo-shell .dcard,.demo-shell .chat-a,.demo-shell .ollama-status { background:#0b111a; border-color:#293748; }
+.demo-shell .rcard:hover,.demo-shell .dcard:hover { border-color:#4c665f; }
+.demo-shell .rmeta,.demo-shell .chat-a-text { color:#edf2f8; }
+.demo-shell .rrank,.demo-shell .rdist,.demo-shell .lat-sub,.demo-shell .dcard-preview,
+.demo-shell .dcard-words,.demo-shell .chat-ctx-label,.demo-shell .ctx-expand,
+.demo-shell .thinking,.demo-shell .leg-row,.demo-shell .blabel { color:#a6b4c3; }
+.demo-shell .lat-big { color:var(--mint); text-shadow:0 0 18px rgba(167,243,208,.2); }
+.demo-shell .dcard-title,.demo-shell .chat-a-label { color:var(--mint); }
+.demo-shell .ollama-status.ok { border-color:rgba(167,243,208,.48); }
+.demo-shell .ollama-status.err { border-color:rgba(243,139,168,.5); }
+.demo-shell .chat-q { color:#edf2f8; background:rgba(167,243,208,.08); border-color:rgba(167,243,208,.25); }
+.demo-shell .chat-ctx { border-top-color:#293748; }
+.demo-shell .ctx-chip { color:var(--mint); background:rgba(167,243,208,.08); border-color:rgba(167,243,208,.3); }
+.demo-shell .ctx-chip:hover { background:rgba(167,243,208,.16); }
+.demo-shell .ctx-expand { background:#111a25; color:#c5d1dd; }
+.demo-shell .spinner { border-top-color:var(--mint); }
+.demo-shell #tip { background:#101722; color:#edf2f8; border-color:#354457; box-shadow:0 8px 25px rgba(0,0,0,.35); }
+.demo-shell ::-webkit-scrollbar-thumb { background:#415367; }
 
 /* ── HEADER ── */
 header {
@@ -150,17 +269,111 @@ button {
 @keyframes blink { 50% { opacity: 0; } }
 
 /* ── TOOLTIP ── */
-#tip { position: fixed; display: none; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 7px 11px; font-size: 11px; pointer-events: none; max-width: 220px; z-index: 200; line-height: 1.5; }
+#tip { position: fixed; display: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; font-size: 11px; pointer-events: none; max-width: 220px; z-index: 200; line-height: 1.5; }
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+@media (max-width: 900px) {
+  .hero { grid-template-columns:1fr; gap:35px; padding:75px 0; }
+  .hero-card { max-width:600px; }
+  .left-panel { width:220px; }
+  .right-panel { width:320px; }
+}
+@media (max-width: 680px) {
+  .portfolio { padding:0 19px 52px; }
+  .site-nav { height:65px; }
+  .nav-links { gap:13px; }.nav-links a { font-size:11px; }.nav-links .nav-cta { padding:8px; }
+  .hero { padding:66px 0; }.hero h2 { letter-spacing:-2.1px; }.hero-copy { font-size:15px; }
+  .section { padding-bottom:54px; }.section-head { display:block; }.section-intro { margin-top:12px; }
+  .project-grid,.skills-wrap { grid-template-columns:1fr; }
+  .portfolio-footer { flex-direction:column; }
+  .demo-shell { height:auto; min-height:100vh; overflow:visible; }
+  .demo-shell header { flex-wrap:wrap; gap:8px; padding:12px 15px; }
+  .demo-shell header h1 { font-size:14px; letter-spacing:1px; }
+  .demo-shell header p { width:100%; order:2; font-size:11px; }
+  #statsLabel { margin-left:auto; }
+  .demo-shell .layout { display:flex; flex-direction:column; overflow:visible; }
+  .left-panel { width:100%; overflow:visible; border-right:0; border-bottom:1px solid var(--border); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .center-panel { height:390px; flex:none; }
+  .right-panel { width:100%; height:650px; flex:none; border-left:0; border-top:1px solid var(--border); }
+}
+@media (max-width: 400px) { .nav-links a[href="#skills"] { display:none; }.left-panel { grid-template-columns:1fr; }.center-panel { height:320px; } }
 </style>
 </head>
 <body>
 
+<main class="portfolio" id="top">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="#top"><span class="brand-mark">&lt;/&gt;</span>Kushagra Bharbhunja</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a><a href="#skills">Skills</a>
+      <a class="nav-cta ask-cta" href="/ask">Ask My AI ↗</a>
+      <a class="nav-cta" href="https://github.com/The-kushagra" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <div class="eyebrow">Developer portfolio · 2026</div>
+      <h2 id="hero-title">Java Developer | <span>Spring Boot | AI Projects</span></h2>
+      <p class="hero-copy">Hi, I’m Kushagra Bharbhunja — a developer focused on Java, Spring Boot, and practical AI projects. I enjoy building clear, dependable tools that solve real problems.</p>
+      <div class="hero-actions">
+        <a class="link-button" href="#projects">Explore projects ↓</a>
+        <a class="link-button secondary" href="https://github.com/The-kushagra" target="_blank" rel="noreferrer">Visit GitHub ↗</a>
+        <a class="link-button secondary contact" href="mailto:kushagragupta96855@gmail.com">Contact me ↗</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-label="Developer profile summary">
+      <div class="terminal-top"><i></i><i></i><i></i>&nbsp;&nbsp; developer.java</div>
+      <div class="code-line"><span class="key">name</span> = <span class="value">"Kushagra Bharbhunja"</span>;</div>
+      <div class="code-line"><span class="key">role</span> = <span class="value">"Java Developer"</span>;</div>
+      <div class="code-line"><span class="key">focus</span> = [<span class="value">"Spring Boot"</span>,</div>
+      <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="value">"AI Projects"</span>];</div>
+      <div class="code-line"><span class="key">status</span> = <span class="value">"Always learning"</span>;</div>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="section-head"><div><div class="section-kicker">Selected work</div><h3 id="projects-title">Projects</h3></div><p class="section-intro">A few projects exploring useful products, backend systems, and applied AI.</p></div>
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="project-top"><span class="project-index">01 / PROJECT</span><span class="project-status">Project</span></div>
+        <h4>NextHire AI</h4><p>An AI-assisted job board project focused on helping people discover and navigate relevant opportunities.</p>
+        <div class="project-foot"><span class="tags">AI · JOB SEARCH</span><a href="https://github.com/The-kushagra/job-board" target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+      </article>
+      <article class="project-card">
+        <div class="project-top"><span class="project-index">02 / PROJECT</span><span class="project-status">Project</span></div>
+        <h4>UPI Without Internet</h4><p>Exploring ways to make UPI payment flows work in low-connectivity situations.</p>
+        <div class="project-foot"><span class="tags">UPI · CONNECTIVITY</span><a href="https://github.com/The-kushagra/UPI_Without_Internet" target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+      </article>
+      <article class="project-card in-progress">
+        <div class="project-top"><span class="project-index">03 / IN PROGRESS</span><span class="project-status">Under development</span></div>
+        <h4>Your-OWN-AI</h4><p>A personal VectorDB and retrieval-augmented generation project. It is still under development; the demo below is accessible as work in progress.</p>
+        <div class="project-foot"><span class="tags">C++ · VECTOR SEARCH · RAG</span><a href="#ai-demo">Open AI demo ↓</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="section-head"><div><div class="section-kicker">Tools &amp; technologies</div><h3 id="skills-title">Skills</h3></div><p class="section-intro">Current areas of focus across backend development and AI experimentation.</p></div>
+    <div class="skills-wrap">
+      <div class="skill-group"><h4>Backend development</h4><div class="skill-list"><span>Java</span><span>Spring Boot</span><span>REST APIs</span><span>C++</span></div></div>
+      <div class="skill-group"><h4>AI &amp; data</h4><div class="skill-list"><span>RAG</span><span>Vector search</span><span>HNSW</span><span>Ollama</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="credit-title">
+    <div class="section-kicker">Project notes</div><h3 id="credit-title" style="font-size:22px;margin-bottom:17px">Authorship &amp; attribution</h3>
+    <p class="attribution"><strong style="color:var(--ink)">My project:</strong> Your-OWN-AI is a work in progress. My current changes in this checkout include document persistence, a request-size limit, and more document-grounded RAG responses. <strong style="color:var(--ink)">Adapted foundation:</strong> the VectorDB dashboard and C++ search/RAG implementation build on the original repository by Pratyush Narain. The original repository is <a href="https://github.com/perryvegehan/Your-OWN-AI" target="_blank" rel="noreferrer">available here</a>. This page does not present the adapted foundation as entirely my original work.</p>
+  </section>
+  <footer class="portfolio-footer"><span>© 2026 Kushagra Bharbhunja</span><a href="https://github.com/The-kushagra" target="_blank" rel="noreferrer">GitHub profile ↗</a></footer>
+</main>
+
+<section class="demo-shell" id="ai-demo" aria-label="VectorDB and RAG interactive demo">
 <header>
-  <h1>padhowithPratyush</h1>
+  <h1>Kushagra Bharbhunja</h1>
+  <p>Java Developer | Spring Boot | AI Projects</p>
   <span class="badge hl">HNSW</span>
   <span class="badge">KD-TREE</span>
   <span class="badge">BRUTE FORCE</span>
@@ -319,6 +532,7 @@ button {
 
   </div><!-- end right-panel -->
 </div><!-- end layout -->
+</section>
 
 <div id="tip"></div>
 
@@ -427,17 +641,17 @@ function w2c(wx,wy) {
 
 function drawFrame() {
   ctx.clearRect(0,0,sc.width,sc.height);
-  ctx.fillStyle='#07070f'; ctx.fillRect(0,0,sc.width,sc.height);
-  ctx.strokeStyle='#0e0e1e'; ctx.lineWidth=1;
+  ctx.fillStyle='#080b12'; ctx.fillRect(0,0,sc.width,sc.height);
+  ctx.strokeStyle='#263343'; ctx.lineWidth=1;
   for (let i=0;i<=8;i++) {
     const tx=70+(i/8)*(sc.width-140),ty=70+(i/8)*(sc.height-140);
     ctx.beginPath();ctx.moveTo(tx,70);ctx.lineTo(tx,sc.height-70);ctx.stroke();
     ctx.beginPath();ctx.moveTo(70,ty);ctx.lineTo(sc.width-70,ty);ctx.stroke();
   }
-  ctx.fillStyle='#1a1a38'; ctx.font='11px Fira Code,monospace';
+  ctx.fillStyle='#9eafbf'; ctx.font='11px Fira Code,monospace';
   ctx.fillText('PC₁ →',sc.width/2-40,sc.height-18);
   ctx.save();ctx.translate(18,sc.height/2+50);ctx.rotate(-Math.PI/2);ctx.fillText('PC₂ →',0,0);ctx.restore();
-  ctx.fillStyle='#151530'; ctx.font='12px Fira Code,monospace';
+  ctx.fillStyle='#b6c4d2'; ctx.font='12px Fira Code,monospace';
   ctx.fillText('2D PCA Projection  ·  Semantic Space',80,28);
 
   if (queryPt && hitIds.size>0) {
@@ -445,7 +659,7 @@ function drawFrame() {
     for (const pt of pcaPoints) {
       if (!hitIds.has(pt.item.id)) continue;
       const [px,py]=w2c(pt.x,pt.y);
-      ctx.strokeStyle='rgba(108,99,255,0.18)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+      ctx.strokeStyle='rgba(167,243,208,0.32)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
       ctx.beginPath();ctx.moveTo(qx,qy);ctx.lineTo(px,py);ctx.stroke();
       ctx.setLineDash([]);
     }
@@ -475,10 +689,10 @@ function drawFrame() {
     for (let i=0;i<10;i++){const a=(i*Math.PI/5)-Math.PI/2,rr=i%2===0?13:5;if(i===0)ctx.moveTo(Math.cos(a)*rr,Math.sin(a)*rr);else ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);}
     ctx.closePath();ctx.fillStyle='#fff';ctx.fill();
     ctx.shadowBlur=0;ctx.restore();
-    ctx.fillStyle='#aaaacc';ctx.font='10px Fira Code,monospace';ctx.fillText('query',qx+16,qy+4);
+    ctx.fillStyle='#d7e3ee';ctx.font='10px Fira Code,monospace';ctx.fillText('query',qx+16,qy+4);
   }
   if (!pcaPoints.length) {
-    ctx.fillStyle='#1a1a38';ctx.font='13px Fira Code,monospace';ctx.textAlign='center';
+    ctx.fillStyle='#a6b4c3';ctx.font='13px Fira Code,monospace';ctx.textAlign='center';
     ctx.fillText('Connecting to VectorDB…',sc.width/2,sc.height/2);ctx.textAlign='left';
   }
   pulse+=0.05;
@@ -572,7 +786,7 @@ function renderResults(results) {
 function drawVecChart(emb) {
   const vc=document.getElementById('vecCvs'),W=vc.parentElement.clientWidth;
   vc.width=W;const vx=vc.getContext('2d');
-  vx.clearRect(0,0,W,76);vx.fillStyle='#07070f';vx.fillRect(0,0,W,76);
+  vx.clearRect(0,0,W,76);vx.fillStyle='#080b12';vx.fillRect(0,0,W,76);
   const bw=(W-4)/DIMS;
   for (let i=0;i<DIMS;i++){
     const h=emb[i]*58,x=2+i*bw,col=DIM_COL[i];
@@ -580,7 +794,7 @@ function drawVecChart(emb) {
   }
   vx.shadowBlur=0;vx.font='8px monospace';vx.textAlign='center';
   [['CS',0],['MATH',4],['FOOD',8],['SPORT',12]].forEach(([lbl,gi],i)=>{
-    vx.fillStyle=Object.values(COL)[i]+'77';vx.fillText(lbl,2+(gi+1.5)*bw,74);
+    vx.fillStyle=Object.values(COL)[i]+'dd';vx.fillText(lbl,2+(gi+1.5)*bw,74);
   });
   vx.textAlign='left';
 }
