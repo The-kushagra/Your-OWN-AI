@@ -38,7 +38,7 @@ body {
 .site-nav { height: 76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(154,169,186,.16); }
 .brand { color:var(--ink); font-weight:700; text-decoration:none; letter-spacing:-.4px; }
 .brand-mark { color:var(--mint); margin-right:9px; font-family:'Fira Code',monospace; }
-.nav-links { display:flex; align-items:center; gap:26px; }
+.nav-links { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
 .nav-links a { color:var(--subtle); text-decoration:none; font-size:13px; transition:color .2s; }
 .nav-links a:hover { color:var(--ink); }
 .nav-links .nav-cta { border:1px solid var(--line); padding:9px 14px; border-radius:7px; color:var(--ink); }
@@ -63,8 +63,13 @@ body {
 .section-kicker { color:var(--mint); font:11px 'Fira Code',monospace; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:9px; }
 .section h3 { font-size:30px; letter-spacing:-1px; }
 .section-intro { color:var(--subtle); font-size:14px; max-width:440px; line-height:1.7; }
-.project-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .project-card { min-height:230px; border:1px solid var(--line); border-radius:11px; background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 70%),var(--surface); padding:23px; display:flex; flex-direction:column; transition:transform .2s,border-color .2s; }
+.project-card.featured { min-height:300px; border-color:#34483f; background:radial-gradient(ellipse at top right,rgba(167,243,208,.08),transparent 60%),var(--surface); }
+.project-card.featured.primary { border-color:rgba(167,243,208,.55); box-shadow:inset 0 1px rgba(167,243,208,.08); }
+.more-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.more-card { min-height:190px; padding:19px; }
+.project-links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:12px; }
 .project-card:hover { transform:translateY(-3px); border-color:#385044; }
 .project-top { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:24px; }
 .project-index { color:var(--mint); font:12px 'Fira Code',monospace; }
@@ -81,6 +86,7 @@ body {
 .skill-group h4 { font-size:14px; margin-bottom:16px; }
 .skill-list { display:flex; flex-wrap:wrap; gap:8px; }
 .skill-list span { color:#c5d1df; background:#182331; border:1px solid #253244; border-radius:6px; padding:7px 10px; font:11px 'Fira Code',monospace; }
+.skill-note { grid-column:1/-1; color:var(--subtle); font-size:12px; line-height:1.7; border-left:2px solid rgba(167,243,208,.5); padding-left:13px; }
 .attribution { color:var(--subtle); font-size:12px; line-height:1.75; max-width:850px; border-left:2px solid #3b4a5c; padding:2px 0 2px 16px; }
 .attribution a { color:var(--mint); }
 .portfolio-footer { border-top:1px solid rgba(154,169,186,.16); padding-top:23px; display:flex; justify-content:space-between; gap:16px; color:var(--subtle); font-size:12px; }
@@ -277,6 +283,7 @@ button {
 @media (max-width: 900px) {
   .hero { grid-template-columns:1fr; gap:35px; padding:75px 0; }
   .hero-card { max-width:600px; }
+  .project-grid,.more-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .left-panel { width:220px; }
   .right-panel { width:320px; }
 }
@@ -286,7 +293,7 @@ button {
   .nav-links { gap:13px; }.nav-links a { font-size:11px; }.nav-links .nav-cta { padding:8px; }
   .hero { padding:66px 0; }.hero h2 { letter-spacing:-2.1px; }.hero-copy { font-size:15px; }
   .section { padding-bottom:54px; }.section-head { display:block; }.section-intro { margin-top:12px; }
-  .project-grid,.skills-wrap { grid-template-columns:1fr; }
+  .project-grid,.more-grid,.skills-wrap { grid-template-columns:1fr; }
   .portfolio-footer { flex-direction:column; }
   .demo-shell { height:auto; min-height:100vh; overflow:visible; }
   .demo-shell header { flex-wrap:wrap; gap:8px; padding:12px 15px; }
@@ -307,7 +314,7 @@ button {
   <nav class="site-nav" aria-label="Main navigation">
     <a class="brand" href="#top"><span class="brand-mark">&lt;/&gt;</span>Kushagra Bharbhunja</a>
     <div class="nav-links">
-      <a href="#projects">Projects</a><a href="#skills">Skills</a>
+      <a href="#projects">Projects</a><a href="#more-projects">More</a><a href="#skills">Skills</a>
       <a class="nav-cta ask-cta" href="/ask">Ask My AI ↗</a>
       <a class="nav-cta" href="https://github.com/The-kushagra" target="_blank" rel="noreferrer">GitHub ↗</a>
     </div>
@@ -335,22 +342,38 @@ button {
   </section>
 
   <section class="section" id="projects" aria-labelledby="projects-title">
-    <div class="section-head"><div><div class="section-kicker">Selected work</div><h3 id="projects-title">Projects</h3></div><p class="section-intro">A few projects exploring useful products, backend systems, and applied AI.</p></div>
+    <div class="section-head"><div><div class="section-kicker">Featured work</div><h3 id="projects-title">Projects</h3></div><p class="section-intro">Selected projects across AI, Java/Spring Boot, product engineering, and backend systems.</p></div>
     <div class="project-grid">
-      <article class="project-card">
-        <div class="project-top"><span class="project-index">01 / PROJECT</span><span class="project-status">Project</span></div>
-        <h4>NextHire AI</h4><p>An AI-assisted job board project focused on helping people discover and navigate relevant opportunities.</p>
-        <div class="project-foot"><span class="tags">AI · JOB SEARCH</span><a href="https://github.com/The-kushagra/job-board" target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+      <article class="project-card featured primary in-progress">
+        <div class="project-top"><span class="project-index">01 / FEATURED</span><span class="project-status">Under development</span></div>
+        <h4>Your-OWN-AI</h4><p>My in-progress C++ VectorDB and RAG project. My verified additions include this portfolio, a recruiter-facing chatbot with a separate reviewed knowledge source, document persistence, request validation, more grounded answers, and server-side write protection.</p>
+        <div class="project-foot"><span class="tags">C++ · VECTOR SEARCH · RAG</span><span class="project-links"><a href="https://github.com/The-kushagra/Your-OWN-AI" target="_blank" rel="noreferrer">Source code ↗</a><a href="#ai-demo">Open local AI demo ↓</a></span></div>
       </article>
-      <article class="project-card">
-        <div class="project-top"><span class="project-index">02 / PROJECT</span><span class="project-status">Project</span></div>
-        <h4>UPI Without Internet</h4><p>Exploring ways to make UPI payment flows work in low-connectivity situations.</p>
-        <div class="project-foot"><span class="tags">UPI · CONNECTIVITY</span><a href="https://github.com/The-kushagra/UPI_Without_Internet" target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+      <article class="project-card featured">
+        <div class="project-top"><span class="project-index">02 / FEATURED</span><span class="project-status">Demo</span></div>
+        <h4>UPI Without Internet</h4><p>A Java 17 and Spring Boot 3.3.5 demo of low-connectivity payment flows using simulated devices, encrypted mesh packets, and demo settlements. Verified contribution: a per-VPA transaction history endpoint and its API test.</p>
+        <div class="project-foot"><span class="tags">JAVA · SPRING BOOT</span><span class="project-links"><a href="https://github.com/The-kushagra/UPI_Without_Internet" target="_blank" rel="noreferrer">Source code ↗</a></span></div>
       </article>
-      <article class="project-card in-progress">
-        <div class="project-top"><span class="project-index">03 / IN PROGRESS</span><span class="project-status">Under development</span></div>
-        <h4>Your-OWN-AI</h4><p>A personal VectorDB and retrieval-augmented generation project. It is still under development; the demo below is accessible as work in progress.</p>
-        <div class="project-foot"><span class="tags">C++ · VECTOR SEARCH · RAG</span><a href="#ai-demo">Open AI demo ↓</a></div>
+      <article class="project-card featured">
+        <div class="project-top"><span class="project-index">03 / FEATURED</span><span class="project-status">Project</span></div>
+        <h4>NextHire AI</h4><p>An AI-powered job board with resume upload and AI-powered resume analysis. Built with Next.js and TypeScript; this is not a Java/Spring Boot project.</p>
+        <div class="project-foot"><span class="tags">NEXT.JS · TYPESCRIPT · AI</span><span class="project-links"><a href="https://github.com/The-kushagra/job-board" target="_blank" rel="noreferrer">Source code ↗</a><a href="https://www.nexthireai.me/" target="_blank" rel="noopener noreferrer">Live demo ↗</a></span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="more-projects" aria-labelledby="more-projects-title">
+    <div class="section-head"><div><div class="section-kicker">Additional work</div><h3 id="more-projects-title">More Projects</h3></div><p class="section-intro">A few more repositories, with descriptions based on their READMEs and source manifests.</p></div>
+    <div class="more-grid">
+      <article class="project-card more-card">
+        <div class="project-top"><span class="project-index">04 / BACKEND</span><span class="project-status">Finance API</span></div>
+        <h4>Zorvyn Finance Backend</h4><p>Role-based finance management REST API for users, income and expense entries, and dashboard summaries.</p>
+        <div class="project-foot"><span class="tags">NODE.JS · TYPESCRIPT · EXPRESS · POSTGRESQL</span><span class="project-links"><a href="https://github.com/The-kushagra/zorvyn-finance-backend" target="_blank" rel="noreferrer">Repository ↗</a></span></div>
+      </article>
+      <article class="project-card more-card">
+        <div class="project-top"><span class="project-index">05 / FRONTEND</span><span class="project-status">Task prototype</span></div>
+        <h4>Tech Task Clone</h4><p>A task-round photo-feed prototype with Firebase sign-up/login, protected routes, image-caption posts, and a Firestore-backed feed.</p>
+        <div class="project-foot"><span class="tags">REACT · VITE · TAILWIND · FIREBASE</span><span class="project-links"><a href="https://github.com/The-kushagra/tech-task-clone" target="_blank" rel="noreferrer">Repository ↗</a></span></div>
       </article>
     </div>
   </section>
@@ -358,14 +381,14 @@ button {
   <section class="section" id="skills" aria-labelledby="skills-title">
     <div class="section-head"><div><div class="section-kicker">Tools &amp; technologies</div><h3 id="skills-title">Skills</h3></div><p class="section-intro">Current areas of focus across backend development and AI experimentation.</p></div>
     <div class="skills-wrap">
-      <div class="skill-group"><h4>Backend development</h4><div class="skill-list"><span>Java</span><span>Spring Boot</span><span>REST APIs</span><span>C++</span></div></div>
-      <div class="skill-group"><h4>AI &amp; data</h4><div class="skill-list"><span>RAG</span><span>Vector search</span><span>HNSW</span><span>Ollama</span></div></div>
+      <div class="skill-group"><h4>Java &amp; Spring Boot</h4><div class="skill-list"><span>Java</span><span>OOP</span><span>Spring Core</span><span>Dependency Injection</span><span>Spring Boot</span><span>Spring MVC</span><span>REST APIs</span><span>Spring Data JPA</span><span>Hibernate</span><span>SQL</span><span>Validation</span><span>Exception Handling</span><span>Transactions</span></div></div>
+      <div class="skill-group"><h4>AI, data &amp; systems</h4><div class="skill-list"><span>C++</span><span>RAG</span><span>Vector search</span><span>HNSW</span><span>Ollama</span></div></div>
     </div>
   </section>
 
   <section class="section" aria-labelledby="credit-title">
     <div class="section-kicker">Project notes</div><h3 id="credit-title" style="font-size:22px;margin-bottom:17px">Authorship &amp; attribution</h3>
-    <p class="attribution"><strong style="color:var(--ink)">My project:</strong> Your-OWN-AI is a work in progress. My current changes in this checkout include document persistence, a request-size limit, and more document-grounded RAG responses. <strong style="color:var(--ink)">Adapted foundation:</strong> the VectorDB dashboard and C++ search/RAG implementation build on the original repository by Pratyush Narain. The original repository is <a href="https://github.com/perryvegehan/Your-OWN-AI" target="_blank" rel="noreferrer">available here</a>. This page does not present the adapted foundation as entirely my original work.</p>
+    <p class="attribution">Built upon the original VectorDB foundation by Pratyush Narain; extended and customized by Kushagra. The original repository is <a href="https://github.com/perryvegehan/Your-OWN-AI" target="_blank" rel="noreferrer">available here</a>.</p>
   </section>
   <footer class="portfolio-footer"><span>© 2026 Kushagra Bharbhunja</span><a href="https://github.com/The-kushagra" target="_blank" rel="noreferrer">GitHub profile ↗</a></footer>
 </main>

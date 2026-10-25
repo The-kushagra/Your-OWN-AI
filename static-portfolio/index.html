@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <title>Kushagra Bharbhunja | Java Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--page:#080b12;--surface:#101722;--line:#293748;--ink:#edf2f8;--subtle:#a6b4c3;--mint:#a7f3d0;--yellow:#fcd34d}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 75% 0,rgba(167,243,208,.07),transparent 40%),var(--page);color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh}
+    a{color:var(--mint)}
+    .portfolio{max-width:1120px;margin:0 auto;padding:0 28px 64px}
+    .site-nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(154,169,186,.16)}
+    .brand{color:var(--ink);font-weight:700;text-decoration:none;letter-spacing:-.4px;white-space:nowrap}.brand-mark{font-family:'Fira Code',monospace;color:var(--mint);margin-right:9px}
+    .nav-links{display:flex;align-items:center;gap:19px;flex-wrap:wrap}.nav-links a{color:var(--subtle);font-size:13px;text-decoration:none}.nav-links a:hover{color:var(--mint)}
+    .nav-links .nav-cta{padding:9px 13px;border:1px solid rgba(167,243,208,.4);border-radius:7px;color:var(--mint);background:rgba(167,243,208,.08)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:54px;align-items:center;padding:94px 0 76px}
+    .eyebrow,.section-kicker{font:500 11px 'Fira Code',monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint)}
+    .eyebrow{margin-bottom:18px}h1{max-width:730px;font-size:clamp(40px,7vw,70px);line-height:1.04;letter-spacing:-3px;margin:0 0 22px}h1 span{color:var(--mint)}
+    .hero-copy{max-width:610px;color:var(--subtle);font-size:17px;line-height:1.8;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:28px}.button{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border:1px solid var(--line);border-radius:7px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:700}.button.primary{border-color:var(--mint);background:var(--mint);color:#0a1712}.button:hover{border-color:var(--mint)}
+    .profile-card{padding:24px;border:1px solid var(--line);border-radius:13px;background:radial-gradient(ellipse at top right,rgba(167,243,208,.09),transparent 55%),var(--surface)}
+    .profile-card .label{padding-bottom:14px;margin-bottom:13px;border-bottom:1px solid var(--line);color:var(--subtle);font:12px 'Fira Code',monospace}
+    .code{font:13px/2 'Fira Code',monospace;color:#c5d1df}.code b{color:var(--mint);font-weight:500}.code em{color:#c4b5fd;font-style:normal}
+    .section{padding:30px 0 64px;scroll-margin-top:24px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:23px}.section-kicker{margin-bottom:8px}h2{margin:0;font-size:30px;letter-spacing:-1px}.section-intro{max-width:470px;margin:0;color:var(--subtle);font-size:14px;line-height:1.7}
+    .featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+    .card{display:flex;flex-direction:column;min-width:0;border:1px solid var(--line);border-radius:11px;background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 70%),var(--surface);padding:21px}
+    .featured-card{min-height:292px;border-color:#34483f}.featured-card.primary{border-color:rgba(167,243,208,.55);background:radial-gradient(ellipse at top right,rgba(167,243,208,.08),transparent 60%),var(--surface)}
+    .more-card{min-height:190px;padding:18px}.card-top{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:20px}.number{color:var(--mint);font:11px 'Fira Code',monospace}.status{padding:5px 8px;border:1px solid var(--line);border-radius:99px;color:var(--subtle);font-size:10px;white-space:nowrap}.status.progress{border-color:rgba(252,211,77,.28);color:var(--yellow)}
+    h3{margin:0 0 8px;font-size:19px}.card p{margin:0;color:var(--subtle);font-size:13px;line-height:1.7}.card-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:auto;padding-top:19px}.tags{color:#b9c8d8;font:10px/1.6 'Fira Code',monospace}.links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:11px}.links a{font-size:12px;text-decoration:none;white-space:nowrap}
+    .more-grid .card{background:var(--surface)}.more-grid h3{font-size:17px}.more-grid .card-bottom{align-items:flex-end}.more-grid .tags{max-width:70%}
+    .note{margin:15px 0 0;border-left:2px solid rgba(167,243,208,.5);padding-left:13px;color:var(--subtle);font-size:12px;line-height:1.7}
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.skill-group{border:1px solid var(--line);border-radius:10px;padding:21px;background:var(--surface)}.skill-group h3{font-size:14px;margin-bottom:14px}.skill-list{display:flex;flex-wrap:wrap;gap:8px}.skill-list span{padding:7px 9px;border:1px solid #253244;border-radius:6px;background:#182331;color:#c5d1df;font:10px 'Fira Code',monospace}.skills-grid .note{grid-column:1/-1}
+    .availability{margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:9px;background:#0b111a;color:var(--subtle);font-size:12px;line-height:1.65}.availability strong{color:var(--ink)}
+    .attribution{max-width:850px;margin:0;border-left:2px solid #3b4a5c;padding:2px 0 2px 15px;color:var(--subtle);font-size:12px;line-height:1.75}
+    footer{display:flex;justify-content:space-between;gap:16px;border-top:1px solid rgba(154,169,186,.16);padding-top:21px;color:var(--subtle);font-size:12px}footer a{text-decoration:none}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;gap:32px;padding:70px 0}.profile-card{max-width:600px}.featured-grid,.more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.portfolio{padding:0 18px 45px}.site-nav{align-items:flex-start;flex-direction:column;padding:17px 0}.nav-links{gap:13px}.nav-links a{font-size:12px}.hero{padding:56px 0}.section{padding-bottom:48px}.section-head{display:block}.section-intro{margin-top:10px}.featured-grid,.more-grid,.skills-grid{grid-template-columns:1fr}.featured-card{min-height:0}.card-bottom{align-items:flex-start;flex-direction:column}.links{justify-content:flex-start}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<main class="portfolio" id="top">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="#top"><span class="brand-mark">&lt;/&gt;</span>Kushagra Bharbhunja</a>
+    <div class="nav-links"><a href="#projects">Featured</a><a href="#more-projects">More projects</a><a href="#skills">Skills</a><a class="nav-cta" href="mailto:kushagragupta96855@gmail.com">Contact ↗</a></div>
+  </nav>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <div class="eyebrow">Developer portfolio · 2026</div>
+      <h1 id="hero-title">Java Developer | <span>Spring Boot | AI Projects</span></h1>
+      <p class="hero-copy">Hi, I’m Kushagra Bharbhunja — a developer focused on Java, Spring Boot, and practical AI projects. This page highlights selected work, listed skills, and public project links.</p>
+      <div class="hero-actions"><a class="button primary" href="#projects">Explore projects ↓</a><a class="button" href="https://github.com/The-kushagra" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a class="button" href="mailto:kushagragupta96855@gmail.com">Contact me ↗</a></div>
+    </div>
+    <aside class="profile-card" aria-label="Developer profile summary">
+      <div class="label">developer.java</div>
+      <div class="code"><b>name</b> = <em>"Kushagra Bharbhunja"</em>;</div>
+      <div class="code"><b>focus</b> = [<em>"Java"</em>, <em>"Spring Boot"</em>,</div>
+      <div class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>"AI Projects"</em>];</div>
+      <div class="code"><b>status</b> = <em>"Always learning"</em>;</div>
+    </aside>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="section-head"><div><div class="section-kicker">Featured work</div><h2 id="projects-title">Projects</h2></div><p class="section-intro">Selected projects across AI, Java/Spring Boot, product engineering, and backend systems.</p></div>
+    <div class="featured-grid">
+      <article class="card featured-card primary">
+        <div class="card-top"><span class="number">01 / FEATURED</span><span class="status progress">Under development</span></div>
+        <h3>Your-OWN-AI</h3><p>My in-progress C++ VectorDB and RAG project. My verified additions include this portfolio, a recruiter-facing chatbot with a separate reviewed knowledge source, document persistence, request validation, more grounded answers, and server-side write protection.</p>
+        <div class="card-bottom"><span class="tags">C++ · VECTOR SEARCH · RAG</span><span class="links"><a href="https://github.com/The-kushagra/Your-OWN-AI" target="_blank" rel="noopener noreferrer">Source code ↗</a></span></div>
+      </article>
+      <article class="card featured-card">
+        <div class="card-top"><span class="number">02 / FEATURED</span><span class="status">Demo</span></div>
+        <h3>UPI Without Internet</h3><p>A Java 17 and Spring Boot 3.3.5 demo of low-connectivity payment flows using simulated devices, encrypted mesh packets, and demo settlements. Verified contribution: a per-VPA transaction history endpoint and its API test.</p>
+        <div class="card-bottom"><span class="tags">JAVA · SPRING BOOT</span><span class="links"><a href="https://github.com/The-kushagra/UPI_Without_Internet" target="_blank" rel="noopener noreferrer">Source code ↗</a></span></div>
+      </article>
+      <article class="card featured-card">
+        <div class="card-top"><span class="number">03 / FEATURED</span><span class="status">Project</span></div>
+        <h3>NextHire AI</h3><p>An AI-powered job board with resume upload and AI-powered resume analysis. Built with Next.js and TypeScript; this is not a Java/Spring Boot project.</p>
+        <div class="card-bottom"><span class="tags">NEXT.JS · TYPESCRIPT · AI</span><span class="links"><a href="https://github.com/The-kushagra/job-board" target="_blank" rel="noopener noreferrer">Source code ↗</a><a href="https://www.nexthireai.me/" target="_blank" rel="noopener noreferrer">Live demo ↗</a></span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="more-projects" aria-labelledby="more-projects-title">
+    <div class="section-head"><div><div class="section-kicker">Additional work</div><h2 id="more-projects-title">More Projects</h2></div><p class="section-intro">Descriptions are limited to repository documentation and source manifests.</p></div>
+    <div class="more-grid">
+      <article class="card more-card"><div class="card-top"><span class="number">04 / BACKEND</span><span class="status">Finance API</span></div><h3>Zorvyn Finance Backend</h3><p>Role-based finance management REST API for users, income and expense entries, and dashboard summaries.</p><div class="card-bottom"><span class="tags">NODE.JS · TYPESCRIPT · EXPRESS · POSTGRESQL</span><span class="links"><a href="https://github.com/The-kushagra/zorvyn-finance-backend" target="_blank" rel="noopener noreferrer">Repository ↗</a></span></div></article>
+      <article class="card more-card"><div class="card-top"><span class="number">05 / FRONTEND</span><span class="status">Task prototype</span></div><h3>Tech Task Clone</h3><p>A task-round photo-feed prototype with Firebase sign-up/login, protected routes, image-caption posts, and a Firestore-backed feed.</p><div class="card-bottom"><span class="tags">REACT · VITE · TAILWIND · FIREBASE</span><span class="links"><a href="https://github.com/The-kushagra/tech-task-clone" target="_blank" rel="noopener noreferrer">Repository ↗</a></span></div></article>
+    </div>
+  </section>
+
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="section-head"><div><div class="section-kicker">Tools &amp; technologies</div><h2 id="skills-title">Skills</h2></div><p class="section-intro">Listed skills and areas of focus across Java/Spring Boot and AI projects.</p></div>
+    <div class="skills-grid">
+      <div class="skill-group"><h3>Java &amp; Spring Boot</h3><div class="skill-list"><span>Java</span><span>OOP</span><span>Spring Core</span><span>Dependency Injection</span><span>Spring Boot</span><span>Spring MVC</span><span>REST APIs</span><span>Spring Data JPA</span><span>Hibernate</span><span>SQL</span><span>Validation</span><span>Exception Handling</span><span>Transactions</span></div></div>
+      <div class="skill-group"><h3>AI, data &amp; systems</h3><div class="skill-list"><span>C++</span><span>RAG</span><span>Vector search</span><span>HNSW</span><span>Ollama</span></div></div>
+    </div>
+  </section>
+
+  <p class="availability"><strong>Interactive AI experiences:</strong> the recruiter chatbot and C++ VectorDB dashboard require the project backend and are not available in this static portfolio yet.</p>
+  <section class="section" aria-labelledby="credit-title"><div class="section-kicker">Project notes</div><h2 id="credit-title" style="font-size:22px;margin:8px 0 16px">Authorship &amp; attribution</h2><p class="attribution">Built upon the original VectorDB foundation by Pratyush Narain; extended and customized by Kushagra. <a href="https://github.com/perryvegehan/Your-OWN-AI" target="_blank" rel="noopener noreferrer">Original repository ↗</a></p></section>
+  <footer><span>© 2026 Kushagra Bharbhunja</span><a href="https://github.com/The-kushagra" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a></footer>
+</main>
+</body>
+</html>

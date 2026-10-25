@@ -1017,6 +1017,10 @@ std::vector<std::string> portfolioScopesForQuestion(const std::string& question)
     if (has("your-own-ai") || has("your own ai") || has("vectordb") ||
         has("vector db"))
         namedScopes.push_back("Your-OWN-AI |");
+    if (has("zorvyn"))
+        namedScopes.push_back("Zorvyn Finance Backend |");
+    if (has("tech task clone") || has("photo feed application"))
+        namedScopes.push_back("Tech Task Clone |");
     if (!namedScopes.empty()) return namedScopes;
 
     std::vector<std::string> scopes;
@@ -1035,10 +1039,14 @@ std::vector<std::string> portfolioScopesForQuestion(const std::string& question)
         scopes.push_back("Your-OWN-AI |");
     if (!scopes.empty()) return scopes;
 
+    if ((has("all three") || has("three projects")) && has("project"))
+        return {"NextHire AI |", "UPI Without Internet |", "Your-OWN-AI |"};
+
     if (has("all projects") || has("each project") || has("compare the projects") ||
         has("what projects") || has("which projects") || has("what project") ||
         has("which project") || has("projects"))
-        return {"NextHire AI |", "UPI Without Internet |", "Your-OWN-AI |"};
+        return {"NextHire AI |", "UPI Without Internet |", "Your-OWN-AI |",
+                "Zorvyn Finance Backend |", "Tech Task Clone |"};
 
     if (has("kushagra") || has("profile") || has("headline") || has("technolog") ||
         has("skill") || has("who is") || has("tell me about"))
@@ -1071,18 +1079,23 @@ std::string buildProjectFactsAnswer(const std::vector<std::pair<float, DocItem>>
     bool first = true;
     for (const auto& hit : hits) {
         const auto& doc = hit.second;
-        if (doc.title.rfind("NextHire AI |", 0) != 0 &&
-            doc.title.rfind("UPI Without Internet |", 0) != 0 &&
-            doc.title.rfind("Your-OWN-AI |", 0) != 0) continue;
+        if (doc.title.rfind("Profile |", 0) == 0 ||
+            doc.title.find(" | Project facts") == std::string::npos) continue;
         if (!first) answer << "\n\n";
         first = false;
         const auto nameEnd = doc.title.find(" | ");
+        const auto verifiedContributions = portfolioField(doc.text, "VERIFIED CONTRIBUTIONS");
+        const auto contribution = verifiedContributions == "Not specified in verified portfolio knowledge."
+            ? portfolioField(doc.text, "VERIFIED CONTRIBUTION") : verifiedContributions;
         answer << doc.title.substr(0, nameEnd) << "\n"
                << "- Technologies: " << portfolioField(doc.text, "TECHNOLOGIES") << "\n"
                << "- Status: " << portfolioField(doc.text, "STATUS") << "\n"
                << "- Verified features/scope: " << portfolioField(doc.text, "VERIFIED FEATURES") << "\n"
-               << "- Verified contributions by Kushagra: " << portfolioField(doc.text, "VERIFIED CONTRIBUTIONS") << "\n"
+               << "- Verified contributions by Kushagra: " << contribution << "\n"
                << "- Repository: " << portfolioField(doc.text, "REPOSITORY");
+        const auto liveDemo = portfolioField(doc.text, "LIVE DEMO");
+        if (liveDemo != "Not specified in verified portfolio knowledge.")
+            answer << "\n- Live demo: " << liveDemo;
         const auto attribution = portfolioField(doc.text, "ATTRIBUTION");
         if (attribution != "Not specified in verified portfolio knowledge.")
             answer << "\n- Attribution: " << attribution;
