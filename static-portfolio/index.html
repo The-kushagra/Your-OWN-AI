@@ -39,8 +39,17 @@
     .availability{margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:9px;background:#0b111a;color:var(--subtle);font-size:12px;line-height:1.65}.availability strong{color:var(--ink)}
     .attribution{max-width:850px;margin:0;border-left:2px solid #3b4a5c;padding:2px 0 2px 15px;color:var(--subtle);font-size:12px;line-height:1.75}
     footer{display:flex;justify-content:space-between;gap:16px;border-top:1px solid rgba(154,169,186,.16);padding-top:21px;color:var(--subtle);font-size:12px}footer a{text-decoration:none}
+    .chat-launcher{position:fixed;right:24px;bottom:24px;z-index:20;display:flex;align-items:center;gap:9px;padding:13px 17px;border:1px solid rgba(167,243,208,.65);border-radius:999px;background:var(--mint);color:#0a1712;font:700 13px 'DM Sans',sans-serif;box-shadow:0 12px 36px rgba(0,0,0,.38);cursor:pointer}
+    .chat-launcher:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.45)}.chat-launcher:focus-visible,.chat-close:focus-visible,.chat-send:focus-visible,.chat-input:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+    .chat-panel{position:fixed;right:24px;bottom:88px;z-index:20;display:flex;width:min(390px,calc(100vw - 32px));height:min(570px,calc(100dvh - 112px));min-height:340px;flex-direction:column;overflow:hidden;border:1px solid #35485a;border-radius:16px;background:#0c131d;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+    .chat-panel[hidden]{display:none}.chat-header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 17px;border-bottom:1px solid var(--line);background:linear-gradient(120deg,rgba(167,243,208,.09),transparent 72%)}
+    .chat-heading{margin:0;color:var(--ink);font-size:14px}.chat-caption{margin:4px 0 0;color:var(--subtle);font-size:11px}.chat-close{display:grid;width:34px;height:34px;place-items:center;border:1px solid var(--line);border-radius:9px;background:#111b28;color:var(--ink);font-size:19px;cursor:pointer}
+    .chat-messages{display:flex;flex:1;flex-direction:column;gap:13px;overflow-y:auto;padding:17px}.chat-message{max-width:91%;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.65}.chat-message.user{align-self:flex-end;padding:10px 13px;border:1px solid rgba(167,243,208,.25);border-radius:14px 14px 4px 14px;background:rgba(167,243,208,.12);color:var(--ink)}
+    .chat-message.assistant{align-self:flex-start;padding:11px 13px;border:1px solid var(--line);border-radius:14px 14px 14px 4px;background:#121c29;color:#e3ebf3}.chat-message.pending{color:var(--mint)}.chat-message.error{border-color:rgba(252,211,77,.38);color:#fde68a}
+    .chat-answer p{margin:0 0 8px}.chat-answer p:last-child{margin-bottom:0}.chat-answer ul,.chat-answer ol{margin:0 0 8px;padding-left:20px}.chat-answer li{padding-left:2px}.chat-answer a{color:var(--mint);text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+    .chat-form{display:flex;align-items:flex-end;gap:9px;padding:12px;border-top:1px solid var(--line);background:#0e1621}.chat-input{flex:1;min-width:0;max-height:120px;resize:vertical;padding:11px 12px;border:1px solid #34465a;border-radius:10px;background:#080e16;color:var(--ink);font:13px/1.5 'DM Sans',sans-serif}.chat-input::placeholder{color:#8d9bab}.chat-input:focus{border-color:var(--mint);outline:none}.chat-send{min-height:42px;padding:0 14px;border:0;border-radius:9px;background:var(--mint);color:#0a1712;font:700 12px 'DM Sans',sans-serif;cursor:pointer}.chat-send:disabled{cursor:wait;opacity:.6}.chat-hint{margin:0;padding:0 14px 10px;background:#0e1621;color:#8292a4;font-size:10px}
     @media(max-width:900px){.hero{grid-template-columns:1fr;gap:32px;padding:70px 0}.profile-card{max-width:600px}.featured-grid,.more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:620px){.portfolio{padding:0 18px 45px}.site-nav{align-items:flex-start;flex-direction:column;padding:17px 0}.nav-links{gap:13px}.nav-links a{font-size:12px}.hero{padding:56px 0}.section{padding-bottom:48px}.section-head{display:block}.section-intro{margin-top:10px}.featured-grid,.more-grid,.skills-grid{grid-template-columns:1fr}.featured-card{min-height:0}.card-bottom{align-items:flex-start;flex-direction:column}.links{justify-content:flex-start}footer{flex-direction:column}}
+    @media(max-width:620px){.portfolio{padding:0 18px 45px}.site-nav{align-items:flex-start;flex-direction:column;padding:17px 0}.nav-links{gap:13px}.nav-links a{font-size:12px}.hero{padding:56px 0}.section{padding-bottom:48px}.section-head{display:block}.section-intro{margin-top:10px}.featured-grid,.more-grid,.skills-grid{grid-template-columns:1fr}.featured-card{min-height:0}.card-bottom{align-items:flex-start;flex-direction:column}.links{justify-content:flex-start}footer{flex-direction:column}.chat-launcher{right:16px;bottom:16px}.chat-panel{right:10px;bottom:76px;width:calc(100vw - 20px);height:min(620px,calc(100dvh - 94px));min-height:300px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
@@ -108,5 +117,194 @@
   <section class="section" aria-labelledby="credit-title"><div class="section-kicker">Project notes</div><h2 id="credit-title" style="font-size:22px;margin:8px 0 16px">Authorship &amp; attribution</h2><p class="attribution">Built upon the original VectorDB foundation by Pratyush Narain; extended and customized by Kushagra. <a href="https://github.com/perryvegehan/Your-OWN-AI" target="_blank" rel="noopener noreferrer">Original repository ↗</a></p></section>
   <footer><span>© 2026 Kushagra Bharbhunja</span><a href="https://github.com/The-kushagra" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a></footer>
 </main>
+<button class="chat-launcher" id="chatLauncher" type="button" aria-expanded="false" aria-controls="portfolioChat">
+  <span aria-hidden="true">✦</span> Ask Kushagra's AI
+</button>
+<section class="chat-panel" id="portfolioChat" aria-label="Ask Kushagra's AI chat" hidden>
+  <header class="chat-header">
+    <div><h2 class="chat-heading">Ask Kushagra's AI</h2><p class="chat-caption">Portfolio assistant · verified project information</p></div>
+    <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+  </header>
+  <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions">
+    <div class="chat-message assistant">Hi! I’m Kushagra’s portfolio assistant. Ask me about his projects, technologies, or verified contributions.</div>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <textarea class="chat-input" id="chatInput" rows="1" maxlength="2000" placeholder="Ask about Kushagra's projects…" aria-label="Your question"></textarea>
+    <button class="chat-send" id="chatSend" type="submit">Send</button>
+  </form>
+  <p class="chat-hint">Enter to send · Shift+Enter for a new line</p>
+</section>
+<script>
+  // LOCAL DEVELOPMENT ONLY — replace with the deployed HTTPS backend URL before publishing chat access.
+  const PORTFOLIO_API_BASE_URL = "https://creating-ahead-flame-regularly.trycloudflare.com";
+
+  const chatLauncher = document.getElementById("chatLauncher");
+  const chatPanel = document.getElementById("portfolioChat");
+  const chatClose = document.getElementById("chatClose");
+  const chatForm = document.getElementById("chatForm");
+  const chatInput = document.getElementById("chatInput");
+  const chatSend = document.getElementById("chatSend");
+  const chatMessages = document.getElementById("chatMessages");
+
+  function addChatMessage(text, kind) {
+    const message = document.createElement("div");
+    message.className = `chat-message ${kind}`;
+    message.textContent = text;
+    chatMessages.appendChild(message);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return message;
+  }
+
+  function appendAnswerText(target, text) {
+    const urlPattern = /https:\/\/[^\s<>"']+/gi;
+    let offset = 0;
+    for (const match of text.matchAll(urlPattern)) {
+      const rawUrl = match[0];
+      let urlText = rawUrl;
+      let trailing = "";
+      while (/[.,!?;:)}\]]$/.test(urlText)) {
+        trailing = urlText.slice(-1) + trailing;
+        urlText = urlText.slice(0, -1);
+      }
+      if (!urlText) continue;
+      let safeUrl;
+      try {
+        const parsed = new URL(urlText);
+        if (parsed.protocol === "https:" && parsed.hostname && !parsed.username && !parsed.password)
+          safeUrl = parsed.href;
+      } catch {
+        // Leave malformed URLs as plain text.
+      }
+      target.appendChild(document.createTextNode(text.slice(offset, match.index)));
+      if (safeUrl) {
+        const link = document.createElement("a");
+        link.href = safeUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = urlText;
+        target.appendChild(link);
+      } else {
+        target.appendChild(document.createTextNode(urlText));
+      }
+      if (trailing) target.appendChild(document.createTextNode(trailing));
+      offset = match.index + rawUrl.length;
+    }
+    target.appendChild(document.createTextNode(text.slice(offset)));
+  }
+
+  function renderAnswer(message, answer) {
+    const content = document.createElement("div");
+    content.className = "chat-answer";
+    const lines = answer.replace(/\r\n?/g, "\n").split("\n");
+    let paragraph = [];
+    let list = null;
+    let listType = "";
+
+    function flushParagraph() {
+      if (!paragraph.length) return;
+      const element = document.createElement("p");
+      paragraph.forEach((line, index) => {
+        if (index) element.appendChild(document.createElement("br"));
+        appendAnswerText(element, line);
+      });
+      content.appendChild(element);
+      paragraph = [];
+    }
+
+    for (const line of lines) {
+      const bullet = line.match(/^\s*[-*•]\s+(.+)$/);
+      const numbered = line.match(/^\s*\d+[.)]\s+(.+)$/);
+      if (bullet || numbered) {
+        flushParagraph();
+        const nextType = numbered ? "ol" : "ul";
+        if (!list || listType !== nextType) {
+          list = document.createElement(nextType);
+          content.appendChild(list);
+          listType = nextType;
+        }
+        const item = document.createElement("li");
+        appendAnswerText(item, (bullet || numbered)[1]);
+        list.appendChild(item);
+      } else if (!line.trim()) {
+        flushParagraph();
+        list = null;
+        listType = "";
+      } else {
+        list = null;
+        listType = "";
+        paragraph.push(line);
+      }
+    }
+    flushParagraph();
+    message.replaceChildren(content);
+  }
+
+  function setChatOpen(open) {
+    chatPanel.hidden = !open;
+    chatLauncher.setAttribute("aria-expanded", String(open));
+    if (open) chatInput.focus();
+  }
+
+  chatLauncher.addEventListener("click", () => setChatOpen(chatPanel.hidden));
+  chatClose.addEventListener("click", () => {
+    setChatOpen(false);
+    chatLauncher.focus();
+  });
+  chatInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      chatForm.requestSubmit();
+    }
+  });
+
+  chatForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const question = chatInput.value.trim();
+    if (!question) {
+      addChatMessage("Please enter a question first.", "assistant error");
+      chatInput.focus();
+      return;
+    }
+
+    addChatMessage(question, "user");
+    chatInput.value = "";
+    chatInput.disabled = true;
+    chatSend.disabled = true;
+    const pending = addChatMessage("Thinking…", "assistant pending");
+
+    try {
+      const response = await fetch(`${PORTFOLIO_API_BASE_URL}/portfolio/ask`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, k: 3 })
+      });
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error(response.ok ? "The AI returned an unreadable response." : `The AI request failed (HTTP ${response.status}).`);
+      }
+      if (!response.ok) {
+        throw new Error(typeof data.error === "string" ? data.error : `The AI request failed (HTTP ${response.status}).`);
+      }
+      if (typeof data.answer !== "string" || !data.answer.trim()) {
+        throw new Error("The AI did not return an answer. Please try again.");
+      }
+      renderAnswer(pending, data.answer);
+      pending.classList.remove("pending");
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    } catch (error) {
+      pending.textContent = error instanceof TypeError
+        ? "I couldn't reach the portfolio AI. Check that the C++ server is running at localhost:8080, then try again."
+        : (error.message || "Something went wrong. Please try again.");
+      pending.classList.remove("pending");
+      pending.classList.add("error");
+    } finally {
+      chatInput.disabled = false;
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+  });
+</script>
 </body>
 </html>
